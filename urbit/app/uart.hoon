@@ -18,8 +18,9 @@
     default  ~(. (default-agent this %|) bowl)
 ++  on-init
   ^-  (quip card _this)
-  :_  this
-  [%pass /init %arvo %l %spin 'uart']
+  [~ this]
+  :::_  this
+  ::[%pass /init %arvo %l %spin %uart]
 ++  on-save   !>(state)
 ++  on-load
   |=  old=vase
@@ -31,10 +32,18 @@
   ?>  ?=(%uart-action mark)
   =/  act  !<(action vase)
   ?-    -.act
-      %read
+      %spin
     :_  this
-    [%pass /spit/ %arvo %l %spit agent.act mark.act dat.act]~
-    ==
+    [%pass /spin %arvo %l %spin name.act]~
+    ::
+      %shut
+    :_  this
+    [%pass /shut %arvo %l %shut name.act]~
+    ::
+      %spit
+    :_  this
+    [%pass /spit %arvo %l %spit name.act mark.act data.act]~
+  ==
 ::
 ++  on-peek
   |=  =path
@@ -42,6 +51,7 @@
   ~&  >>  path
   =/  dev  `@tas`(snag 2 path)
   ?+  path  (on-peek:default path)
+    [%s %agents *]  ``noun+!>(dev)
   ==
 ++  on-arvo
   |=  [=wire =sign-arvo]
@@ -51,53 +61,10 @@
   =/  cad  +.sign-arvo
   ~&  >  ['wire' wire]
   ~&  >  ['sign-arvo' sign-arvo]
-  ?+  cmd  (on-arvo:default wire sign-arvo)
-      %getattr
-    ?+  sign-arvo  (on-arvo:default wire sign-arvo)
-      [%loch %seen *]
-      =/  termio  (unpack-term:uart dat.sign-arvo)
-      ~&  ['term' termio]
-      :-  ~
-        %_  this
-          term  (~(put by term) device termio)
-        ==
-      ==
-    ::
-      %setattr
+  ?+  sign-arvo  (on-arvo:default wire sign-arvo)
+      [%lick %soak *]
+    ~&  ["mark: " mark]
     [~ this]
-    ::
-      %setspeed
-    [~ this]
-    ::
-      %tcdrain
-    [~ this]
-    ::
-      %tcflow
-    [~ this]
-    ::
-      %tcflush
-    [~ this]
-    ::
-      %tcsendbreak
-    [~ this]
-    ::
-      %rite
-    ?+  sign-arvo  (on-arvo:default wire sign-arvo)
-      [%loch %rote *]
-      :-  ~
-        %_  this
-          write  (~(put by write) device tus.sign-arvo)
-        ==
-      ==
-    ::
-      %read
-    ?+  sign-arvo  (on-arvo:default wire sign-arvo)
-      [%loch %seen *]
-      :-  ~
-        %_  this
-          read  (~(put by read) device [dat.sign-arvo tus.sign-arvo])
-        ==
-      ==
   ==
 ++  on-watch  on-watch:default
 ++  on-leave  on-leave:default
