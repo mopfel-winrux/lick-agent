@@ -28,10 +28,4 @@ while True:
     print(f"mark: {mark}")
     print(f"noun: {noun}")
 
-
-
-#data = bytes.fromhex('0e00000001003b9e34b932ba41e0632b7b630003');
-#print(data)
-#sock.send(data)
-
 sock.close()
