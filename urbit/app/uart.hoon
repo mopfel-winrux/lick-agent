@@ -34,7 +34,7 @@
   ?-    -.act
       %spin
     :_  this
-    [%pass /spin %arvo %l %spin name.act]~
+    [%pass / %arvo %l %spin name.act]~
     ::
       %shut
     :_  this
@@ -56,14 +56,14 @@
 ++  on-arvo
   |=  [=wire =sign-arvo]
   ^-  (quip card _this)
-  =/  cmd    (snag 0 wire)
-  =/  device  (snag 1 wire)
+  ::=/  cmd    (snag 0 wire)
+  ::=/  device  (snag 1 wire)
   =/  cad  +.sign-arvo
   ~&  >  ['wire' wire]
   ~&  >  ['sign-arvo' sign-arvo]
   ?+  sign-arvo  (on-arvo:default wire sign-arvo)
       [%lick %soak *]
-    ~&  ["mark: " mark]
+    ~&  ['data' ;;(@ta noun.sign-arvo)]
     [~ this]
   ==
 ++  on-watch  on-watch:default
