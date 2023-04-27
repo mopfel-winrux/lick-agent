@@ -63,7 +63,7 @@
   ~&  >  ['sign-arvo' sign-arvo]
   ?+  sign-arvo  (on-arvo:default wire sign-arvo)
       [%lick %soak *]
-    ~&  ['data' ;;(@ta noun.sign-arvo)]
+    ~&  ['data' noun.sign-arvo]
     [~ this]
   ==
 ++  on-watch  on-watch:default

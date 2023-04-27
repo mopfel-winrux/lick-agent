@@ -1,8 +1,8 @@
 /+  uart
 |%
 +$  action
-  $%  [%spin name=@tas]  
-      [%shut name=@tas]
-      [%spit name=@tas =mark data=noun]     ::  %read from device dev for cnt bytes
+  $%  [%spin name=path]  
+      [%shut name=path]
+      [%spit name=path =mark data=noun]     ::  %read from device dev for cnt bytes
   ==
 --
