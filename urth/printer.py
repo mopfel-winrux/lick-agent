@@ -12,7 +12,7 @@ baudrate=19200
 
 
 sock_name = '/rumors/uart'
-pier_path = '/home/amadeo/learn_hoon/zod/'
+pier_path = '/home/amadeo/learn_hoon/tasseg-sophec-mopfel-winrux/'
 vere_path = '/home/amadeo/learn_hoon/urbit-test'
 
 sock_path = pier_path+'.urb/dev/'+sock_name
@@ -21,6 +21,10 @@ sock_path = pier_path+'.urb/dev/'+sock_name
 uart = serial.Serial(serial_name, baudrate=baudrate, timeout=3000)
 ThermalPrinter = adafruit_thermal_printer.get_printer_class(2.69)
 printer = ThermalPrinter(uart)
+
+#printer.underline = adafruit_thermal_printer.UNDERLINE_THICK
+#printer.size = adafruit_thermal_printer.SIZE_MEDIUM
+#printer.justify = adafruit_thermal_printer.JUSTIFY_CENTER
 
 sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 sock.connect(sock_path)
@@ -37,4 +41,3 @@ while True:
     if(mark=="%print"):
         printer.print(noun)
         printer.feed(2)
-
